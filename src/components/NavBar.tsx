@@ -14,26 +14,39 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
+import { NavLink } from "react-router-dom";
+
 const drawerWidth = 240;
 const title = "Name";
-const navItems = ["Home", "About", "Shop"];
+const navItems = [
+  { title: "Home", link: "/" },
+  { title: "About", link: "/about" },
+  { title: "Shop", link: "/shop" },
+];
 
 interface IMobileDrawerProps {
-  handleDrawerToggle: (value: boolean) => void;
+  setIsMobileDrawerOpen: (value: boolean) => void;
 }
 
-const MobileDrawer = ({ handleDrawerToggle }: IMobileDrawerProps) => {
+const MobileDrawer = ({ setIsMobileDrawerOpen }: IMobileDrawerProps) => {
   return (
-    <Box onClick={() => handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box
+      onClick={(prev) => setIsMobileDrawerOpen(!prev)}
+      sx={{ textAlign: "center" }}
+    >
       <Typography variant='h6' sx={{ my: 2 }}>
         {title}
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+          <ListItem key={item.title} disablePadding>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              component={NavLink}
+              to={item.link}
+            >
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -53,7 +66,7 @@ const NavBar = () => {
             color='inherit'
             aria-label='open drawer'
             edge='start'
-            onClick={() => setIsMobileDrawerOpen((prevState) => !prevState)}
+            onClick={() => setIsMobileDrawerOpen((prev) => !prev)}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
@@ -61,14 +74,19 @@ const NavBar = () => {
           <Typography
             variant='h6'
             component='div'
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ flex: 1, display: { xs: "none", sm: "block" } }}
           >
             {title}
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#000" }}>
-                {item}
+              <Button
+                key={item.title}
+                sx={{ color: "#000" }}
+                component={NavLink}
+                to={item.link}
+              >
+                {item.title}
               </Button>
             ))}
           </Box>
@@ -78,7 +96,7 @@ const NavBar = () => {
         <Drawer
           variant='temporary'
           open={isMobileDrawerOpen}
-          onClose={() => setIsMobileDrawerOpen((prevState) => !prevState)}
+          onClose={() => setIsMobileDrawerOpen((prev) => !prev)}
           ModalProps={{
             keepMounted: true,
           }}
@@ -91,9 +109,7 @@ const NavBar = () => {
           }}
         >
           <MobileDrawer
-            handleDrawerToggle={() =>
-              setIsMobileDrawerOpen((prevState) => !prevState)
-            }
+            setIsMobileDrawerOpen={() => setIsMobileDrawerOpen((prev) => !prev)}
           />
         </Drawer>
       </Box>
