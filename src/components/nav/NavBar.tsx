@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
@@ -18,6 +18,8 @@ import Button from "@mui/material/Button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 
+type itemCategory = "men's clothing" | "women's clothing";
+
 const drawerWidth = 240;
 const title = "Name";
 const navItems = [
@@ -28,9 +30,13 @@ const navItems = [
 
 interface IMobileDrawerProps {
   setIsMobileDrawerOpen: (value: boolean) => void;
+  setItemCategory: (value: itemCategory) => void;
 }
 
-const MobileDrawer = ({ setIsMobileDrawerOpen }: IMobileDrawerProps) => {
+const MobileDrawer = ({
+  setIsMobileDrawerOpen,
+  setItemCategory,
+}: IMobileDrawerProps) => {
   return (
     <Box
       onClick={(prev) => setIsMobileDrawerOpen(!prev)}
@@ -40,6 +46,26 @@ const MobileDrawer = ({ setIsMobileDrawerOpen }: IMobileDrawerProps) => {
         {title}
       </Typography>
       <Divider />
+
+      <Box>
+        <Button
+          sx={{ color: "#000" }}
+          component={NavLink}
+          to={"/shop"}
+          onClick={() => setItemCategory("men's clothing")}
+        >
+          Men
+        </Button>
+        <Button
+          sx={{ color: "#000" }}
+          component={NavLink}
+          to={"/shop"}
+          onClick={() => setItemCategory("women's clothing")}
+        >
+          Women
+        </Button>
+      </Box>
+
       <List>
         {navItems.map((item) => (
           <ListItem key={item.title} disablePadding>
@@ -59,6 +85,8 @@ const MobileDrawer = ({ setIsMobileDrawerOpen }: IMobileDrawerProps) => {
 
 const NavBar = () => {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState<boolean>(false);
+  const [itemCategory, setItemCategory] =
+    useState<itemCategory>("women's clothing");
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -85,6 +113,26 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
+
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Button
+              sx={{ color: "#000" }}
+              component={NavLink}
+              to={"/shop"}
+              onClick={() => setItemCategory("men's clothing")}
+            >
+              Men
+            </Button>
+            <Button
+              sx={{ color: "#000" }}
+              component={NavLink}
+              to={"/shop"}
+              onClick={() => setItemCategory("women's clothing")}
+            >
+              Women
+            </Button>
+          </Box>
+
           <Typography
             variant='h6'
             component='div'
@@ -153,7 +201,8 @@ const NavBar = () => {
           }}
         >
           <MobileDrawer
-            setIsMobileDrawerOpen={() => setIsMobileDrawerOpen((prev) => !prev)}
+            setIsMobileDrawerOpen={setIsMobileDrawerOpen}
+            setItemCategory={setItemCategory}
           />
         </Drawer>
       </Box>
