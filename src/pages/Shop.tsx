@@ -1,32 +1,45 @@
-import Box from "@mui/material/Box";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { itemCategory } from "../components/nav/NavBar";
+
+import ItemCard from "../components/ItemCard";
+
+interface IShopItemRating {
+  rating: number;
+  count: number;
+}
+
+export interface IShopItem {
+  category: itemCategory;
+  description: string;
+  id: number;
+  image: string;
+  price: number;
+  rating: IShopItemRating;
+  title: string;
+}
 
 const Shop = () => {
+  const [shopItems, setShopItems] = useState<IShopItem[]>([]);
   useEffect(() => {
     fetchShopData();
-  }, []);
-
-  useEffect(() => {
-    fetchShopCategories();
   }, []);
 
   const fetchShopData = async () => {
     const response = await fetch("https://fakestoreapi.com/products/"); //  query for asc/desc
     const data = await response.json();
 
-    console.log(data);
+    setShopItems(data);
   };
 
-  const fetchShopCategories = async () => {
-    const response = await fetch(
-      "https://fakestoreapi.com/products/categories"
-    );
-    const data = await response.json();
-
-    console.log(data);
-  };
-
-  return <Box sx={{ pt: 7 }}>shop</Box>;
+  return (
+    <>
+      {shopItems.map((item) => (
+        <>
+          <ItemCard item={item} />
+        </>
+      ))}
+    </>
+  );
 };
 
 export default Shop;

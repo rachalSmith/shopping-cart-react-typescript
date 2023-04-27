@@ -18,14 +18,13 @@ import Button from "@mui/material/Button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 
-type itemCategory = "men's clothing" | "women's clothing";
+export type itemCategory = "men's clothing" | "women's clothing";
 
 const drawerWidth = 240;
 const title = "Name";
 const navItems = [
   { title: "Home", link: "/" },
   { title: "About", link: "/about" },
-  { title: "Shop", link: "/shop" },
 ];
 
 interface IMobileDrawerProps {
