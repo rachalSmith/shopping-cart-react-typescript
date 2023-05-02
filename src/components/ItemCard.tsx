@@ -9,9 +9,20 @@ interface ItemCardProps {
 const ItemCard = ({ item }: ItemCardProps) => {
   return (
     <>
-      <Card variant='outlined'>
+      <Card variant='outlined' sx={{ border: "red solid", minWidth: "20%" }}>
         <CardContent sx={{ background: "gray" }}>
-          <img src={item.image} alt={item.title} width='500' height='600' />
+          {/* <img
+            loading='lazy'
+            src={item.image}
+            alt={item.title}
+            style={{
+              minWidth: "300px",
+              maxWidth: "400px",
+              height: "200px",
+              objectFit: "scale-down",
+              aspectRatio: "2/1",
+            }}
+          /> */}
         </CardContent>
       </Card>
     </>

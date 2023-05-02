@@ -11,7 +11,12 @@ function App() {
   return (
     <>
       <NavBar />
-      <Box sx={{ mx: 3, mt: 7 }}>
+      <Box
+        sx={{
+          px: 3,
+          mt: 10,
+        }}
+      >
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/shop' element={<Shop />} />
