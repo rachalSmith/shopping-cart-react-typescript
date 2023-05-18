@@ -1,7 +1,6 @@
 import Card from "@mui/material/Card";
 import { IShopItem } from "../pages/Shop";
 import CardContent from "@mui/material/CardContent";
-import Box from "@mui/material/Box";
 import { CardMedia } from "@mui/material";
 
 interface ItemCardProps {
@@ -11,7 +10,7 @@ interface ItemCardProps {
 const ItemCard = ({ item }: ItemCardProps) => {
   return (
     <>
-      <Card variant='outlined' sx={{ border: "red solid" }}>
+      <Card variant='outlined'>
         <CardContent sx={{ background: "gray" }}>
           <CardMedia
             image={item.image}
