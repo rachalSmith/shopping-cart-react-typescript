@@ -13,7 +13,9 @@ function App() {
       <Box
         sx={{
           px: 3,
-          mt: 10,
+          my: 10,
+
+          backgroundColor: "#F5F5F5",
         }}
       >
         <Routes>

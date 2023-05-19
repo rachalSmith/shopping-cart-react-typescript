@@ -3,8 +3,6 @@ import { itemCategory } from "../components/nav/NavBar";
 
 import ItemCard from "../components/ItemCard";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 
 interface IShopItemRating {
   rating: number;
