@@ -17,6 +17,7 @@ import Button from "@mui/material/Button";
 
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Container } from "@mui/material";
 
 export type itemCategory = "men's clothing" | "women's clothing";
 
@@ -88,100 +89,105 @@ const NavBar = () => {
     useState<itemCategory>("women's clothing");
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box>
       <AppBar
         component='nav'
         elevation={2}
         sx={{
+          alignItems: "center",
           background: "white",
-          flexDirection: "row",
-          justifyContent: "space-between",
         }}
       >
-        <Toolbar
-          sx={{
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
-          <IconButton
-            aria-label='open drawer'
-            edge='start'
-            onClick={() => setIsMobileDrawerOpen((prev) => !prev)}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Button
-              sx={{ color: "#000" }}
-              component={NavLink}
-              to={"/shop"}
-              onClick={() => setItemCategory("men's clothing")}
-            >
-              Men
-            </Button>
-            <Button
-              sx={{ color: "#000" }}
-              component={NavLink}
-              to={"/shop"}
-              onClick={() => setItemCategory("women's clothing")}
-            >
-              Women
-            </Button>
-          </Box>
-
-          <Typography
-            variant='h6'
-            component='div'
-            sx={{ color: "gray", display: { xs: "none", sm: "block" } }}
-          >
-            {title}
-          </Typography>
-
-          <Box
+        <Container sx={{ display: "flex" }}>
+          <Toolbar
             sx={{
-              display: { xs: "none", sm: "block" },
+              width: "100%",
+              justifyContent: "space-between",
             }}
           >
-            {navItems.map((item) => (
+            <IconButton
+              aria-label='open drawer'
+              edge='start'
+              onClick={() => setIsMobileDrawerOpen((prev) => !prev)}
+              sx={{ mr: 1, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+              }}
+            >
               <Button
-                key={item.title}
                 sx={{ color: "#000" }}
                 component={NavLink}
-                to={item.link}
+                to={"/shop"}
+                onClick={() => setItemCategory("men's clothing")}
               >
-                {item.title}
+                Men
               </Button>
-            ))}
-          </Box>
-        </Toolbar>
-        <IconButton
-          aria-label='go to shopping cart'
-          component='label'
-          sx={{ position: "relative", mr: 2 }}
-        >
-          <ShoppingBagOutlinedIcon sx={{ transform: "scale(1.2)" }} />
-          <Typography
-            sx={{
-              background: "red",
-              position: "absolute",
-              color: "#fff",
-              top: "1.5rem",
-              left: "1.25rem",
-              borderRadius: "50%",
-              width: "1rem",
-              height: "1rem",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            variant='caption'
+              <Button
+                sx={{ color: "#000" }}
+                component={NavLink}
+                to={"/shop"}
+                onClick={() => setItemCategory("women's clothing")}
+              >
+                Women
+              </Button>
+            </Box>
+
+            <Typography
+              variant='h6'
+              component='div'
+              sx={{ color: "gray", display: { xs: "none", sm: "block" } }}
+            >
+              {title}
+            </Typography>
+
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+              }}
+            >
+              {navItems.map((item) => (
+                <Button
+                  key={item.title}
+                  sx={{ color: "#000" }}
+                  component={NavLink}
+                  to={item.link}
+                >
+                  {item.title}
+                </Button>
+              ))}
+            </Box>
+          </Toolbar>
+          <IconButton
+            aria-label='go to shopping cart'
+            component='label'
+            sx={{ position: "relative", mr: 2 }}
           >
-            0
-          </Typography>
-        </IconButton>
+            <ShoppingBagOutlinedIcon sx={{ transform: "scale(1.2)" }} />
+            <Typography
+              sx={{
+                background: "red",
+                position: "absolute",
+                color: "#fff",
+                top: "1.5rem",
+                left: "1.25rem",
+                borderRadius: "50%",
+                width: "1rem",
+                height: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              variant='caption'
+            >
+              0
+            </Typography>
+          </IconButton>
+        </Container>
       </AppBar>
       <Box component='nav'>
         <Drawer

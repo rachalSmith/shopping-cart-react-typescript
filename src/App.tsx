@@ -5,15 +5,16 @@ import Shop from "./pages/Shop";
 import About from "./pages/About";
 import NavBar from "./components/nav/NavBar";
 import Box from "@mui/material/Box";
+import { ShoppingBagProvider } from "./context/ShoppingBagContext";
 
 function App() {
   return (
-    <>
+    <ShoppingBagProvider>
       <NavBar />
       <Box
         sx={{
           px: 3,
-          my: 10,
+          py: 10,
 
           backgroundColor: "#F5F5F5",
         }}
@@ -24,7 +25,7 @@ function App() {
           <Route path='/about' element={<About />} />
         </Routes>
       </Box>
-    </>
+    </ShoppingBagProvider>
   );
 }
 
