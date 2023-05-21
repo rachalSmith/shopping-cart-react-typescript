@@ -1,5 +1,5 @@
 import Card from "@mui/material/Card";
-import { IShopItem } from "../pages/Shop";
+import { IShopItem } from "../../types/shopItem";
 import CardContent from "@mui/material/CardContent";
 import AddIcon from "@mui/icons-material/Add";
 

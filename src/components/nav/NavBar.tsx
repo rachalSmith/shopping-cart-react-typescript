@@ -14,12 +14,10 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { itemCategory } from "../../../types/shopItem";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Container } from "@mui/material";
-
-export type itemCategory = "men's clothing" | "women's clothing";
 
 const drawerWidth = 240;
 const title = "Name";
@@ -167,7 +165,7 @@ const NavBar = () => {
             component='label'
             sx={{ position: "relative", mr: 2 }}
           >
-            <ShoppingBagOutlinedIcon sx={{ transform: "scale(1.2)" }} />
+            <ShoppingCartOutlinedIcon sx={{ transform: "scale(1.2)" }} />
             <Typography
               sx={{
                 background: "red",

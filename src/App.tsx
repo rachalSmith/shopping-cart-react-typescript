@@ -5,11 +5,11 @@ import Shop from "./pages/Shop";
 import About from "./pages/About";
 import NavBar from "./components/nav/NavBar";
 import Box from "@mui/material/Box";
-import { ShoppingBagProvider } from "./context/ShoppingBagContext";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 function App() {
   return (
-    <ShoppingBagProvider>
+    <ShoppingCartProvider>
       <NavBar />
       <Box
         sx={{
@@ -25,7 +25,7 @@ function App() {
           <Route path='/about' element={<About />} />
         </Routes>
       </Box>
-    </ShoppingBagProvider>
+    </ShoppingCartProvider>
   );
 }
 

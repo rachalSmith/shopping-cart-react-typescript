@@ -1,24 +1,9 @@
 import { useEffect, useState } from "react";
-import { itemCategory } from "../components/nav/NavBar";
 
 import ItemCard from "../components/ItemCard";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-
-interface IShopItemRating {
-  rating: number;
-  count: number;
-}
-
-export interface IShopItem {
-  category: itemCategory;
-  description: string;
-  id: number;
-  image: string;
-  price: number;
-  rating: IShopItemRating;
-  title: string;
-}
+import { IShopItem } from "../../types/shopItem";
 
 const Shop = () => {
   const [shopItems, setShopItems] = useState<IShopItem[]>([]);
