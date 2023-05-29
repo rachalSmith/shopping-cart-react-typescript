@@ -61,10 +61,14 @@ interface IShoppingCartProviderProps {
 }
 
 interface IShoppingCartContext {
+  setIsCartOpen: (value: boolean) => void;
   getItemQuantity: (cartItems: ICartItem[], id: number) => number;
-  onIncrementCart: (cartItems: ICartItem[], id: number) => void;
-  onDecrementtCart: (cartItems: ICartItem[], id: number) => void;
-  onRemoveItem: (cartItems: ICartItem[], id: number) => void;
+  onIncrementCart: (id: number) => void;
+  onDecrementtCart: (id: number) => void;
+  onRemoveItem: (id: number) => void;
+  isCartOpen: boolean;
+  cartQuantity: number;
+  cartItems: ICartItem[];
 }
 
 const ShoppingCartContext = createContext({} as IShoppingCartContext);
@@ -77,24 +81,34 @@ export const ShoppingCartProvider = ({
   children,
 }: IShoppingCartProviderProps) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
-  const onIncrementCart = (cartItems: ICartItem[], id: number) => {
-    return setCartItems(incrementCart(cartItems, id));
+  const cartQuantity = cartItems.reduce(
+    (quantity, item) => item.quantity + quantity,
+    0
+  );
+
+  const onIncrementCart = (id: number) => {
+    return setCartItems((cartItems) => incrementCart(cartItems, id));
   };
-  const onDecrementtCart = (cartItems: ICartItem[], id: number) => {
-    return setCartItems(incrementCart(cartItems, id));
+  const onDecrementtCart = (id: number) => {
+    return setCartItems((cartItems) => incrementCart(cartItems, id));
   };
-  const onRemoveItem = (cartItems: ICartItem[], id: number) => {
-    return setCartItems(incrementCart(cartItems, id));
+  const onRemoveItem = (id: number) => {
+    return setCartItems((cartItems) => incrementCart(cartItems, id));
   };
 
   return (
     <ShoppingCartContext.Provider
       value={{
+        setIsCartOpen,
         getItemQuantity,
         onIncrementCart,
         onDecrementtCart,
         onRemoveItem,
+        isCartOpen,
+        cartItems,
+        cartQuantity,
       }}
     >
       {children}

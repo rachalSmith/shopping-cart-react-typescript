@@ -1,16 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Shop from "./pages/Shop";
-import About from "./pages/About";
-import NavBar from "./components/nav/NavBar";
+import Home from "./pages/home/Home";
+import Shop from "./pages/shop/Shop";
+import About from "./pages/about/About";
 import Box from "@mui/material/Box";
+
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import NavContainer from "./components/navigation/navContainer/NavContainer";
 
 function App() {
   return (
     <ShoppingCartProvider>
-      <NavBar />
+      <NavContainer />
       <Box
         sx={{
           px: 3,
