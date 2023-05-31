@@ -1,16 +1,18 @@
 import { useContext, createContext, ReactNode, useState, useMemo } from "react";
-import { ICartItemRef } from "../../../types/shoppingCart";
 
 import UseShopItems from "../../hooks/useShopItems";
 
 import {
   decrementCart,
+  getCartItems,
+  getCartQuantity,
   getItemQuantity,
   incrementCart,
   removeItem,
 } from "./shoppingCartHelpers";
 
 import { IShopItem } from "../../../types/shopItem";
+import { ICartItemRef } from "../../../types/shoppingCart";
 
 interface IShoppingCartProviderProps {
   children: ReactNode;
@@ -43,15 +45,10 @@ export const ShoppingCartProvider = ({
   const { shopItems } = UseShopItems();
 
   const cartItems = useMemo(() => {
-    return shopItems.filter((shopItem) =>
-      cartItemsRef.find((cartItem) => cartItem.id === shopItem.id)
-    );
+    return getCartItems(shopItems, cartItemsRef);
   }, [cartItemsRef, shopItems]);
 
-  const cartQuantity = cartItemsRef.reduce(
-    (quantity, item) => item.quantity + quantity,
-    0
-  );
+  const cartQuantity = getCartQuantity(cartItemsRef);
 
   const onIncrementCart = (id: number) => {
     return setCartItemsRef((cartItemsRef) => incrementCart(cartItemsRef, id));

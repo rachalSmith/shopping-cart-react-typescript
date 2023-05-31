@@ -1,7 +1,21 @@
+import { IShopItem } from "../../../types/shopItem";
 import { ICartItemRef } from "../../../types/shoppingCart";
 
 export const checkCartForItem = (cartItemsRef: ICartItemRef[], id: number) => {
   return cartItemsRef.find((item) => item.id === id);
+};
+
+export const getCartItems = (
+  shopItems: IShopItem[],
+  cartItemsRef: ICartItemRef[]
+) => {
+  return shopItems.filter((shopItem) =>
+    checkCartForItem(cartItemsRef, shopItem.id)
+  );
+};
+
+export const getCartQuantity = (cartItemsRef: ICartItemRef[]) => {
+  return cartItemsRef.reduce((quantity, item) => item.quantity + quantity, 0);
 };
 
 export const getItemQuantity = (cartItemsRef: ICartItemRef[], id: number) => {
