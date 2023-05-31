@@ -5,15 +5,12 @@ import NavBar from "../navBar/NavBar";
 import MobileNav from "../mobileNav/MobileNav";
 
 import { itemCategory } from "../../../../types/shopItem";
-import { useShoppingCart } from "../../../context/shoppingCart/ShoppingCartContext";
 
 const title = "Name";
 
 const NavContainer = () => {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState<boolean>(false);
   const [query, setQuery] = useState<itemCategory>("women's clothing");
-
-  const { isCartOpen, setIsCartOpen, cartItems } = useShoppingCart();
 
   return (
     <>

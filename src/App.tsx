@@ -7,11 +7,13 @@ import Box from "@mui/material/Box";
 
 import { ShoppingCartProvider } from "./context/shoppingCart/ShoppingCartContext";
 import NavContainer from "./components/navigation/navContainer/NavContainer";
+import ShoppingCartContainer from "./components/shoppingCart/shoppingCartContainer/ShoppingCartContainer";
 
 function App() {
   return (
     <ShoppingCartProvider>
       <NavContainer />
+      <ShoppingCartContainer />
       <Box
         sx={{
           px: 3,
