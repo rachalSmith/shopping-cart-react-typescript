@@ -14,6 +14,7 @@ Not the most creative project, but provides good context for using common react 
 - [x] Api call.
 - [x] Drawers for navigation and cart.
 - [ ] Implement cart functionality with extended unit tests.
+- [ ] Query Api call.
 - [ ] Refactor to reducer pattern.
 - [ ] Intergration tests for common components.
 - [ ] Mui theme and fix styling.
