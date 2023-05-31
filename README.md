@@ -4,7 +4,7 @@ A typical shopping app
 
 # Description
 
-Using the Fake Store API, this app allows you to browse items and add them to a cart.
+Using the Fake Store API, this app allows you to browse items, add them to a cart, increment and decrement items while keeping track globally with context. 
 
 Not the most creative project, but provides good context for using common react patterns and testing. Business logic written using TDD.
 
