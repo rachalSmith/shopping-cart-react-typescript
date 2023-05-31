@@ -5,7 +5,7 @@ import Shop from "./pages/shop/Shop";
 import About from "./pages/about/About";
 import Box from "@mui/material/Box";
 
-import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { ShoppingCartProvider } from "./context/shoppingCart/ShoppingCartContext";
 import NavContainer from "./components/navigation/navContainer/NavContainer";
 
 function App() {

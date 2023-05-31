@@ -36,6 +36,7 @@ const StyledCardMedia = styled(CardMedia)({
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   border: "yellow solid",
+  minWidth: "25%",
 });
 
 const Card = ({ item, quickAddButton, children, orientation }: ICardProps) => {

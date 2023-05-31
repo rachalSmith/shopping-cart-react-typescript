@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import { itemCategory } from "../../../../types/shopItem";
 import NavButton from "../../common/navButton.tx/NavButton";
 import { pages } from "../helpers";
-import { useShoppingCart } from "../../../context/ShoppingCartContext";
+import { useShoppingCart } from "../../../context/shoppingCart/ShoppingCartContext";
 
 interface INavBarProps {
   title: string;

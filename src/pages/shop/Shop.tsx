@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import Card from "../../components/common/card/Card";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -9,8 +7,8 @@ import Typography from "@mui/material/Typography";
 
 import { formatCurrency } from "../../utils/formatCurrency";
 
-import { IShopItem } from "../../../types/shopItem";
-import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
+import UseShopItems from "../../hooks/useShopItems";
 
 const QuickAddButton = ({ id }: { id: number }) => {
   const { onIncrementCart } = useShoppingCart();
@@ -43,17 +41,7 @@ const CardContent = ({ title, price }: ICardContentProps) => {
 };
 
 const Shop = () => {
-  const [shopItems, setShopItems] = useState<IShopItem[]>([]);
-  useEffect(() => {
-    fetchShopData();
-  }, []);
-
-  const fetchShopData = async () => {
-    const response = await fetch("https://fakestoreapi.com/products/"); //  query for asc/desc
-    const data = await response.json();
-
-    setShopItems(data);
-  };
+  const { shopItems } = UseShopItems();
 
   return (
     <Container>

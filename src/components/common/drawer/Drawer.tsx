@@ -2,7 +2,9 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
+import CloseIcon from "@mui/icons-material/Close";
 import { ReactNode } from "react";
+import IconButton from "@mui/material/IconButton";
 
 interface ISideDrawerprops {
   anchor: "top" | "left" | "bottom" | "right";
@@ -39,12 +41,25 @@ const Drawer = ({
         },
       }}
     >
-      <Box onClick={() => setIsDrawerOpen(false)} sx={{ textAlign: "center" }}>
-        <Typography variant='h6' sx={{ my: 1.5 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          mx: 2,
+        }}
+      >
+        <Typography variant='h6' sx={{ my: 1.1 }}>
           {title}
         </Typography>
-        <Divider />
+        <IconButton
+          aria-label='close'
+          sx={{ p: 0 }}
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          <CloseIcon />
+        </IconButton>
       </Box>
+      <Divider />
       {children}
     </MuiDrawer>
   );
