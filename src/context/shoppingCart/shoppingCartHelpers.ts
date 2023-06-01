@@ -5,6 +5,18 @@ export const checkCartForItem = (cartItemsRef: ICartItemRef[], id: number) => {
   return cartItemsRef.find((item) => item.id === id);
 };
 
+export const getTotalCost = (
+  cartItemsRef: ICartItemRef[],
+  shopItems: IShopItem[]
+) => {
+  return cartItemsRef.reduce(
+    (acc, { id, quantity }) =>
+      acc +
+      quantity * (shopItems.find((shopItem) => shopItem.id === id)?.price || 0),
+    0
+  );
+};
+
 export const getCartItems = (
   shopItems: IShopItem[],
   cartItemsRef: ICartItemRef[]

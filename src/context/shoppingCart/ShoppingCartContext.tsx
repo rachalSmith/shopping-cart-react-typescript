@@ -42,6 +42,8 @@ export const ShoppingCartProvider = ({
   const [cartItemsRef, setCartItemsRef] = useState<ICartItemRef[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
+  console.log(cartItemsRef);
+
   const { shopItems } = UseShopItems();
 
   const cartItems = useMemo(() => {
