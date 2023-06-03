@@ -7,6 +7,7 @@ import {
   getCartItems,
   getCartQuantity,
   getItemQuantity,
+  getTotalCost,
   incrementCart,
   removeItem,
 } from "./shoppingCartHelpers";
@@ -24,6 +25,7 @@ interface IShoppingCartContext {
   onIncrementCart: (id: number) => void;
   onDecrementtCart: (id: number) => void;
   onRemoveItem: (id: number) => void;
+  onCalculateTotalCost: () => number;
   isCartOpen: boolean;
   cartQuantity: number;
   cartItemsRef: ICartItemRef[];
@@ -41,8 +43,6 @@ export const ShoppingCartProvider = ({
 }: IShoppingCartProviderProps) => {
   const [cartItemsRef, setCartItemsRef] = useState<ICartItemRef[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
-
-  console.log(cartItemsRef);
 
   const { shopItems } = UseShopItems();
 
@@ -62,6 +62,10 @@ export const ShoppingCartProvider = ({
     return setCartItemsRef((cartItemsRef) => removeItem(cartItemsRef, id));
   };
 
+  const onCalculateTotalCost = () => {
+    return getTotalCost(cartItemsRef, shopItems);
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -70,6 +74,7 @@ export const ShoppingCartProvider = ({
         onIncrementCart,
         onDecrementtCart,
         onRemoveItem,
+        onCalculateTotalCost,
         isCartOpen,
         cartItemsRef,
         cartQuantity,
