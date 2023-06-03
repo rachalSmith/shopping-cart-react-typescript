@@ -6,6 +6,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ReactNode } from "react";
 import IconButton from "@mui/material/IconButton";
 
+type DisplaySettings = "block" | "none";
+
 interface ISideDrawerprops {
   anchor: "top" | "left" | "bottom" | "right";
   children: ReactNode;
@@ -13,6 +15,7 @@ interface ISideDrawerprops {
   setIsDrawerOpen: (value: boolean) => void;
   title: string;
   width: string;
+  responsiveDisplay: { xs: DisplaySettings; sm: DisplaySettings };
 }
 
 const Drawer = ({
@@ -22,6 +25,7 @@ const Drawer = ({
   setIsDrawerOpen,
   title,
   width,
+  responsiveDisplay,
 }: ISideDrawerprops) => {
   return (
     <MuiDrawer
@@ -34,7 +38,7 @@ const Drawer = ({
       }}
       sx={{
         // this needs to be passed in
-        display: { xs: "block", sm: "none" },
+        display: responsiveDisplay,
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
           width: width,
