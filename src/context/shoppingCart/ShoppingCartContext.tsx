@@ -1,7 +1,5 @@
 import { useContext, createContext, ReactNode, useState, useMemo } from "react";
 
-import UseShopItems from "../../hooks/useShopItems";
-
 import {
   decrementCart,
   getCartItems,
@@ -13,7 +11,7 @@ import {
 } from "./shoppingCartHelpers";
 
 import { IShopItem } from "../../../types/shopItem";
-import { ICartItemRef } from "../../../types/shoppingCart";
+import { ICartItem } from "../../../types/shoppingCart";
 
 interface IShoppingCartProviderProps {
   children: ReactNode;
@@ -21,14 +19,14 @@ interface IShoppingCartProviderProps {
 
 interface IShoppingCartContext {
   setIsCartOpen: (value: boolean) => void;
-  getItemQuantity: (cartItemsRef: ICartItemRef[], id: number) => number;
+  getItemQuantity: (cartItemsRef: ICartItem[], id: number) => number;
   onIncrementCart: (id: number) => void;
   onDecrementtCart: (id: number) => void;
   onRemoveItem: (id: number) => void;
   onCalculateTotalCost: () => number;
   isCartOpen: boolean;
   cartQuantity: number;
-  cartItemsRef: ICartItemRef[];
+  cartItemsRef: ICartItem[];
   cartItems: IShopItem[];
 }
 
@@ -41,29 +39,27 @@ export const useShoppingCart = () => {
 export const ShoppingCartProvider = ({
   children,
 }: IShoppingCartProviderProps) => {
-  const [cartItemsRef, setCartItemsRef] = useState<ICartItemRef[]>([]);
+  const [cartItem, setCartItem] = useState<ICartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
-  const { shopItems } = UseShopItems();
-
   const cartItems = useMemo(() => {
-    return getCartItems(shopItems, cartItemsRef);
-  }, [cartItemsRef, shopItems]);
+    return getCartItems(shopItems, cartItem);
+  }, [cartItem, shopItems]);
 
-  const cartQuantity = getCartQuantity(cartItemsRef);
+  const cartQuantity = getCartQuantity(cartItem);
 
   const onIncrementCart = (id: number) => {
-    return setCartItemsRef((cartItemsRef) => incrementCart(cartItemsRef, id));
+    return setCartItem((cartItem) => incrementCart(cartItem, id));
   };
   const onDecrementtCart = (id: number) => {
-    return setCartItemsRef((cartItemsRef) => decrementCart(cartItemsRef, id));
+    return setCartItem((cartItem) => decrementCart(cartItem, id));
   };
   const onRemoveItem = (id: number) => {
-    return setCartItemsRef((cartItemsRef) => removeItem(cartItemsRef, id));
+    return setCartItem((cartItem) => removeItem(cartItem, id));
   };
 
   const onCalculateTotalCost = () => {
-    return getTotalCost(cartItemsRef, shopItems);
+    return getTotalCost(cartItem, shopItems);
   };
 
   return (
@@ -76,9 +72,28 @@ export const ShoppingCartProvider = ({
         onRemoveItem,
         onCalculateTotalCost,
         isCartOpen,
-        cartItemsRef,
+        cartItem,
         cartQuantity,
         cartItems,
+      }}
+    >
+      {children}
+    </ShoppingCartContext.Provider>
+  );
+};
+
+  return (
+    <ShoppingCartContext.Provider
+      value={{
+        setIsCartOpen,
+        getItemQuantity,
+        onIncrementCart,
+        onDecrementtCart,
+        onRemoveItem,
+        onCalculateTotalCost,
+        isCartOpen,
+        cartQuantity,
+        cart,
       }}
     >
       {children}

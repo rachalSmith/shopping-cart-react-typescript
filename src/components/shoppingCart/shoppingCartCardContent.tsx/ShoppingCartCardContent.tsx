@@ -21,7 +21,7 @@ const ShoppingCardCardContent = ({ title, price, id }: ICardContentProps) => {
     onIncrementCart,
     onRemoveItem,
     getItemQuantity,
-    cartItemsRef,
+    cartItem,
   } = useShoppingCart();
   return (
     <Grid container spacing={2}>
@@ -60,7 +60,7 @@ const ShoppingCardCardContent = ({ title, price, id }: ICardContentProps) => {
           >
             <RemoveIcon sx={{ transform: "scale(0.8)" }} />
           </IconButton>
-          <Typography>{getItemQuantity(cartItemsRef, id)}</Typography>
+          <Typography>{getItemQuantity(cartItem, id)}</Typography>
           <IconButton
             onClick={() => {
               onIncrementCart(id);

@@ -1,4 +1,4 @@
-export interface ICartItemRef {
+export interface ICartItem {
   quantity: number;
   id: number;
 }

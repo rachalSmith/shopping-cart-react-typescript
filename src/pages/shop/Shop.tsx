@@ -1,16 +1,13 @@
-import Card from "../../components/common/card/Card";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
-import AddIcon from "@mui/icons-material/Add";
-import Fab from "@mui/material/Fab";
-import Typography from "@mui/material/Typography";
+import { AddIcon, Container, Fab, Grid, Typography } from "../../mui";
+import { useParams } from "react-router";
 
 import { formatCurrency } from "../../utils/formatCurrency";
-
 import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
-import UseShopItems from "../../hooks/useShopItems";
+import { IShopItem } from "../../../types/shopItem";
+import useFetch from "../../hooks/useFetch";
+import Card from "../../components/common/card/Card";
 
-const QuickAddButton = ({ id }: { id: number }) => {
+const QuickAddButton = ({ item }: { item: IShopItem[] }) => {
   const { onIncrementCart } = useShoppingCart();
 
   return (
@@ -18,7 +15,7 @@ const QuickAddButton = ({ id }: { id: number }) => {
       variant='extended'
       size='medium'
       sx={{ mb: 2 }}
-      onClick={() => onIncrementCart(id)}
+      onClick={() => onIncrementCart(item)}
     >
       <AddIcon />
       Quick Add
@@ -41,7 +38,13 @@ const CardContent = ({ title, price }: ICardContentProps) => {
 };
 
 const Shop = () => {
-  const { shopItems } = UseShopItems();
+  const { category } = useParams();
+
+  const { data } = useFetch(
+    `https://fakestoreapi.com/products/category/${category}'s clothing`
+  );
+
+  const shopItems = data as IShopItem[];
 
   return (
     <Container>
@@ -51,7 +54,7 @@ const Shop = () => {
             <Card
               item={item}
               orientation='column'
-              quickAddButton={<QuickAddButton id={item.id} />}
+              quickAddButton={<QuickAddButton item={item} />}
             >
               <CardContent title={item.title} price={item.price} />
             </Card>

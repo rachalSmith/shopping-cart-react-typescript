@@ -1,12 +1,11 @@
 import { IShopItem } from "../../../types/shopItem";
-import { ICartItemRef } from "../../../types/shoppingCart";
-
-export const checkCartForItem = (cartItemsRef: ICartItemRef[], id: number) => {
+import { ICartItem } from "../../../types/shoppingCart";
+export const checkCartForItem = (cartItemsRef: ICartItem[], id: number) => {
   return cartItemsRef.find((item) => item.id === id);
 };
 
 export const getTotalCost = (
-  cartItemsRef: ICartItemRef[],
+  cartItemsRef: ICartItem[],
   shopItems: IShopItem[]
 ) => {
   return cartItemsRef.reduce(
@@ -19,18 +18,18 @@ export const getTotalCost = (
 
 export const getCartItems = (
   shopItems: IShopItem[],
-  cartItemsRef: ICartItemRef[]
+  cartItemsRef: ICartItem[]
 ) => {
   return shopItems.filter((shopItem) =>
     checkCartForItem(cartItemsRef, shopItem.id)
   );
 };
 
-export const getCartQuantity = (cartItemsRef: ICartItemRef[]) => {
+export const getCartQuantity = (cartItemsRef: ICartItem[]) => {
   return cartItemsRef.reduce((quantity, item) => item.quantity + quantity, 0);
 };
 
-export const getItemQuantity = (cartItemsRef: ICartItemRef[], id: number) => {
+export const getItemQuantity = (cartItemsRef: ICartItem[], id: number) => {
   const cartItem = checkCartForItem(cartItemsRef, id);
 
   if (cartItem) {
@@ -40,9 +39,9 @@ export const getItemQuantity = (cartItemsRef: ICartItemRef[], id: number) => {
   return 0;
 };
 
-export const incrementCart = (cartItemsRef: ICartItemRef[], id: number) => {
+export const incrementCart = (cartItemsRef: ICartItem[], id: number) => {
   const cartItem = checkCartForItem(cartItemsRef, id);
-  const incrementedCart: ICartItemRef[] = [];
+  const incrementedCart: ICartItem[] = [];
 
   if (!cartItem) {
     return [...cartItemsRef, { id, quantity: 1 }];
@@ -60,8 +59,8 @@ export const incrementCart = (cartItemsRef: ICartItemRef[], id: number) => {
   return incrementedCart;
 };
 
-export const decrementCart = (cartItemsRef: ICartItemRef[], id: number) => {
-  const incrementedCart: ICartItemRef[] = [];
+export const decrementCart = (cartItemsRef: ICartItem[], id: number) => {
+  const incrementedCart: ICartItem[] = [];
 
   cartItemsRef.forEach((item) => {
     if (item.id === id && item.quantity > 1) {
@@ -77,6 +76,6 @@ export const decrementCart = (cartItemsRef: ICartItemRef[], id: number) => {
 
   return incrementedCart;
 };
-export const removeItem = (cartItemsRef: ICartItemRef[], id: number) => {
+export const removeItem = (cartItemsRef: ICartItem[], id: number) => {
   return cartItemsRef.filter((item) => item.id !== id);
 };

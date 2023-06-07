@@ -1,32 +1,20 @@
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-
-import { itemCategory } from "../../../../types/shopItem";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "../../../mui";
 import { NavLink } from "react-router-dom";
 import { pages } from "../helpers";
 import NavButton from "../../common/navButton.tx/NavButton";
 
-interface IMobileDrawerProps {
-  setQuery: (value: itemCategory) => void;
-}
-
-const MobileNav = ({ setQuery }: IMobileDrawerProps) => {
+const MobileNav = () => {
   return (
     <>
       <Box sx={{ width: "100%" }}>
-        <NavButton
-          title={"Men"}
-          link={"/shop"}
-          setQuery={() => setQuery("men's clothing")}
-        />
-        <NavButton
-          title={"Women"}
-          link={"/shop"}
-          setQuery={() => setQuery("women's clothing")}
-        />
+        <NavButton title={"Men"} link={"/shop/men"} />
+        <NavButton title={"Women"} link={"/shop/women"} />
       </Box>
 
       <List>

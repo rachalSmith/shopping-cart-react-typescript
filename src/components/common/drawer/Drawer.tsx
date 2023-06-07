@@ -1,10 +1,12 @@
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import MuiDrawer from "@mui/material/Drawer";
-import Typography from "@mui/material/Typography";
-import CloseIcon from "@mui/icons-material/Close";
 import { ReactNode } from "react";
-import IconButton from "@mui/material/IconButton";
+import {
+  Box,
+  CloseIcon,
+  Divider,
+  IconButton,
+  MuiDrawer,
+  Typography,
+} from "../../../mui";
 
 type DisplaySettings = "block" | "none";
 

@@ -1,25 +1,23 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-
-import { itemCategory } from "../../../../types/shopItem";
 import NavButton from "../../common/navButton.tx/NavButton";
 import { pages } from "../helpers";
 import { useShoppingCart } from "../../../context/shoppingCart/ShoppingCartContext";
+import {
+  AppBar,
+  Box,
+  Container,
+  IconButton,
+  MenuIcon,
+  ShoppingCartOutlinedIcon,
+  Toolbar,
+  Typography,
+} from "../../../mui";
 
 interface INavBarProps {
   title: string;
   toggleMobileDrawer: (value: boolean) => void;
-  setQuery: (value: itemCategory) => void;
 }
 
-const NavBar = ({ title, toggleMobileDrawer, setQuery }: INavBarProps) => {
+const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
   const { setIsCartOpen, cartQuantity } = useShoppingCart();
 
   return (
@@ -53,16 +51,8 @@ const NavBar = ({ title, toggleMobileDrawer, setQuery }: INavBarProps) => {
                 display: { xs: "none", sm: "block" },
               }}
             >
-              <NavButton
-                title={"Men"}
-                link={"/shop"}
-                setQuery={() => setQuery("men's clothing")}
-              />
-              <NavButton
-                title={"Women"}
-                link={"/shop"}
-                setQuery={() => setQuery("women's clothing")}
-              />
+              <NavButton title={"Men"} link={"/shop/men"} />
+              <NavButton title={"Women"} link={"/shop/women"} />
             </Box>
 
             <Typography

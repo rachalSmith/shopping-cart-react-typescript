@@ -1,9 +1,6 @@
 import { ReactNode } from "react";
-
+import { MuiCard, CardContent, CardMedia } from "../../../mui";
 import { styled } from "@mui/material";
-import MuiCard from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 
 import { IShopItem } from "../../../../types/shopItem";
 

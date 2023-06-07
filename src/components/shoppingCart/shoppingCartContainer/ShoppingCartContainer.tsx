@@ -16,7 +16,7 @@ const ShoppingCartContainer = () => {
   const {
     isCartOpen,
     setIsCartOpen,
-    cartItems,
+    cartItem,
     cartQuantity,
     onCalculateTotalCost,
   } = useShoppingCart();
@@ -32,7 +32,7 @@ const ShoppingCartContainer = () => {
         responsiveDisplay={{ xs: "block", sm: "block" }}
       >
         <Stack spacing={2} sx={{ mb: 19 }}>
-          {cartItems.map((item) => (
+          {cartItem.map((item) => (
             <Card key={item.id} item={item} orientation='row'>
               <ShoppingCardCardContent
                 title={item.title}
