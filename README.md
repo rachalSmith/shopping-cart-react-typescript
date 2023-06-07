@@ -27,7 +27,7 @@ App is not yet complete
 
 ### Usage
 
-Manually tested, unit tested and working with Node version: 16.13.0
+Currently broken while decoupling shop and cart.Whoops.
 
 #### Install dependencies
 
