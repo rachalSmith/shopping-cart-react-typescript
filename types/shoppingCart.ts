@@ -1,4 +1,5 @@
-export interface ICartItem {
+import { IShopItem } from "./shopItem";
+
+export interface ICartItem extends IShopItem {
   quantity: number;
-  id: number;
 }
