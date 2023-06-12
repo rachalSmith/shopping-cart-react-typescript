@@ -1,44 +1,45 @@
 import Typography from "@mui/material/Typography";
 import { formatCurrency } from "../../../utils/formatCurrency";
 
-import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import Box from "@mui/material/Box";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
 import { useShoppingCart } from "../../../context/shoppingCart/ShoppingCartContext";
 
+import { ICartItem } from "../../../../types/shoppingCart";
+import {
+  AddIcon,
+  Box,
+  CloseIcon,
+  Grid,
+  IconButton,
+  RemoveIcon,
+} from "../../../mui";
+
 interface ICardContentProps {
-  title: string;
-  price: number;
-  id: number;
+  item: ICartItem;
 }
 
-const ShoppingCardCardContent = ({ title, price, id }: ICardContentProps) => {
-  const {
-    onDecrementtCart,
-    onIncrementCart,
-    onRemoveItem,
-    getItemQuantity,
-    cartItem,
-  } = useShoppingCart();
+const ShoppingCardCardContent = ({ item }: ICardContentProps) => {
+  const { cartDispatch } = useShoppingCart();
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={10}>
-        <Typography variant='caption'>{title}</Typography>
+        <Typography variant='caption'>{item.title}</Typography>
       </Grid>
       <Grid item xs={2}>
         <IconButton
           size='small'
           aria-label='close'
-          onClick={() => onRemoveItem(id)}
+          onClick={() =>
+            cartDispatch({ type: "REMOVE_FROM_CART", payload: item })
+          }
         >
           <CloseIcon sx={{ transform: "scale(0.8)" }} />
         </IconButton>
       </Grid>
       <Grid item xs={6}>
-        <Typography variant='subtitle2'>{formatCurrency(price)}</Typography>
+        <Typography variant='subtitle2'>
+          {formatCurrency(item.price)}
+        </Typography>
       </Grid>
       <Grid item xs={6}>
         <Box
@@ -55,15 +56,15 @@ const ShoppingCardCardContent = ({ title, price, id }: ICardContentProps) => {
             size='small'
             sx={{ p: 0 }}
             onClick={() => {
-              onDecrementtCart(id);
+              cartDispatch({ type: "DECREASE_CART", payload: item });
             }}
           >
             <RemoveIcon sx={{ transform: "scale(0.8)" }} />
           </IconButton>
-          <Typography>{getItemQuantity(cartItem, id)}</Typography>
+          <Typography>{item.quantity}</Typography>
           <IconButton
             onClick={() => {
-              onIncrementCart(id);
+              cartDispatch({ type: "INCREASE_CART", payload: item });
             }}
             size='small'
             sx={{ p: 0 }}

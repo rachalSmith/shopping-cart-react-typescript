@@ -7,15 +7,15 @@ import { IShopItem } from "../../../types/shopItem";
 import useFetch from "../../hooks/useFetch";
 import Card from "../../components/common/card/Card";
 
-const QuickAddButton = ({ item }: { item: IShopItem[] }) => {
-  const { onIncrementCart } = useShoppingCart();
+const QuickAddButton = ({ item }: { item: IShopItem }) => {
+  const { cartDispatch } = useShoppingCart();
 
   return (
     <Fab
       variant='extended'
       size='medium'
       sx={{ mb: 2 }}
-      onClick={() => onIncrementCart(item)}
+      onClick={() => cartDispatch({ type: "INCREASE_CART", payload: item })}
     >
       <AddIcon />
       Quick Add

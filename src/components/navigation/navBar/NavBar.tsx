@@ -18,7 +18,7 @@ interface INavBarProps {
 }
 
 const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
-  const { setIsCartOpen, cartQuantity } = useShoppingCart();
+  const { setIsCartOpen, cartState } = useShoppingCart();
 
   return (
     <>
@@ -100,7 +100,7 @@ const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
               }}
               variant='caption'
             >
-              {cartQuantity}
+              {cartState.totalItems}
             </Typography>
           </IconButton>
         </Container>

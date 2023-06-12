@@ -13,7 +13,7 @@ function App() {
   return (
     <ShoppingCartProvider>
       <NavContainer />
-      {/* <ShoppingCartContainer /> */}
+      <ShoppingCartContainer />
       <Box
         sx={{
           px: 3,

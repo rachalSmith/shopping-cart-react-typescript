@@ -13,13 +13,9 @@ import ShoppingCardCardContent from "../shoppingCartCardContent.tsx/ShoppingCart
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 const ShoppingCartContainer = () => {
-  const {
-    isCartOpen,
-    setIsCartOpen,
-    cartItem,
-    cartQuantity,
-    onCalculateTotalCost,
-  } = useShoppingCart();
+  const { isCartOpen, setIsCartOpen, cartState } = useShoppingCart();
+
+  const { cartItems, totalItems, totalCost } = cartState;
 
   return (
     <>
@@ -32,13 +28,9 @@ const ShoppingCartContainer = () => {
         responsiveDisplay={{ xs: "block", sm: "block" }}
       >
         <Stack spacing={2} sx={{ mb: 19 }}>
-          {cartItem.map((item) => (
+          {cartItems.map((item) => (
             <Card key={item.id} item={item} orientation='row'>
-              <ShoppingCardCardContent
-                title={item.title}
-                price={item.price}
-                id={item.id}
-              />
+              <ShoppingCardCardContent item={item} />
             </Card>
           ))}
         </Stack>
@@ -62,12 +54,12 @@ const ShoppingCartContainer = () => {
           >
             <Grid item>
               <Typography variant='body2'>
-                Subtotal ({cartQuantity} Item{cartQuantity > 1 && "s"})
+                Subtotal ({totalItems} Item{totalItems > 1 && "s"})
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant='subtitle2'>
-                {formatCurrency(onCalculateTotalCost())}
+                {formatCurrency(totalCost)}
               </Typography>
             </Grid>
             <Grid item xs={12}>
