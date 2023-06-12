@@ -14,8 +14,8 @@ Not the most creative project, but provides good context for using common react 
 - [x] Api call.
 - [x] Drawers for navigation and cart.
 - [ ] Implement cart functionality with extended unit tests.
-- [ ] Query Api call.
-- [ ] Refactor to reducer pattern.
+- [x] Query Api call.
+- [x] Refactor to reducer pattern.
 - [ ] Intergration tests for common components.
 - [ ] Mui theme and fix styling.
 - [ ] Refactor.
@@ -27,7 +27,7 @@ App is not yet complete
 
 ### Usage
 
-Currently broken while decoupling shop and cart.Whoops.
+Currently an eyesore but manually tested, unit tested and working with Node version: 16.13.0
 
 #### Install dependencies
 
