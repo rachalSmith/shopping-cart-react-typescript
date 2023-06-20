@@ -24,8 +24,11 @@ const ShoppingCartContainer = () => {
         title={"Cart"}
         isOpen={isCartOpen}
         setIsDrawerOpen={setIsCartOpen}
-        width={"400px"}
-        responsiveDisplay={{ xs: "block", sm: "block" }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: 400,
+          },
+        }}
       >
         <Stack spacing={2} sx={{ mb: 19 }}>
           {cartItems.map((item) => (

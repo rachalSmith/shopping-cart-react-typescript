@@ -20,8 +20,12 @@ const NavContainer = () => {
         title={title}
         isOpen={isMobileDrawerOpen}
         setIsDrawerOpen={setIsMobileDrawerOpen}
-        width={"240px"}
-        responsiveDisplay={{ xs: "block", sm: "none" }}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": {
+            width: 240,
+          },
+        }}
       >
         <MobileNav />
       </Drawer>

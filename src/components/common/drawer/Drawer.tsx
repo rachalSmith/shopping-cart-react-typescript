@@ -1,23 +1,21 @@
 import { ReactNode } from "react";
 import {
-  Box,
   CloseIcon,
+  MuiDrawer,
+  Box,
   Divider,
   IconButton,
-  MuiDrawer,
   Typography,
 } from "../../../mui";
-
-type DisplaySettings = "block" | "none";
+import { styled } from "@mui/material";
 
 interface ISideDrawerprops {
   anchor: "top" | "left" | "bottom" | "right";
+  className?: string;
   children: ReactNode;
   isOpen: boolean;
   setIsDrawerOpen: (value: boolean) => void;
   title: string;
-  width: string;
-  responsiveDisplay: { xs: DisplaySettings; sm: DisplaySettings };
 }
 
 const Drawer = ({
@@ -26,25 +24,17 @@ const Drawer = ({
   isOpen,
   setIsDrawerOpen,
   title,
-  width,
-  responsiveDisplay,
+  className,
 }: ISideDrawerprops) => {
   return (
     <MuiDrawer
+      className={className}
       anchor={anchor}
       variant='temporary'
       open={isOpen}
       onClose={() => setIsDrawerOpen(false)}
       ModalProps={{
         keepMounted: true,
-      }}
-      sx={{
-        // this needs to be passed in
-        display: responsiveDisplay,
-        "& .MuiDrawer-paper": {
-          boxSizing: "border-box",
-          width: width,
-        },
       }}
     >
       <Box
@@ -71,4 +61,4 @@ const Drawer = ({
   );
 };
 
-export default Drawer;
+export default styled(Drawer)({});
