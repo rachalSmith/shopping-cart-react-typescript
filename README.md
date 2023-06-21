@@ -13,10 +13,11 @@ Not the most creative project, but provides good context for using common react 
 - [x] Routing to pages.
 - [x] Api call.
 - [x] Drawers for navigation and cart.
-- [ ] Implement cart functionality with extended unit tests.
+- [x] Implement cart functionality with extended unit tests.
 - [x] Query Api call.
 - [x] Refactor to reducer pattern.
-- [ ] Intergration tests for common components.
+- [ ] Snapshot tests for card.
+- [ ] Intergration tests RTL.
 - [ ] Mui theme and fix styling.
 - [ ] Refactor.
 - [ ] End to End tests.
