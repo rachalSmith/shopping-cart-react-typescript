@@ -1,21 +1,22 @@
+import { styled } from "@mui/material";
 import { Button } from "../../../mui";
 import { NavLink } from "react-router-dom";
 
 interface INavButtonProps {
   title: string;
   link: string;
-  setShopCategoryQuery?: () => void;
+  className?: string;
 }
 
-const NavButton = ({ title, link, setShopCategoryQuery }: INavButtonProps) => {
+const NavButton = ({ title, link, className }: INavButtonProps) => {
   if (link[0] !== "/") {
     throw new Error("Link is missing /");
   }
 
   return (
     <Button
+      className={className}
       sx={{ color: "#000" }}
-      onClick={setShopCategoryQuery}
       component={NavLink}
       to={link}
     >
@@ -24,4 +25,4 @@ const NavButton = ({ title, link, setShopCategoryQuery }: INavButtonProps) => {
   );
 };
 
-export default NavButton;
+export default styled(NavButton)({});
