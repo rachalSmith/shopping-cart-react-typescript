@@ -1,16 +1,17 @@
-import NavButton from "../../common/navButton.tx/NavButton";
-import { pages } from "../helpers";
-import { useShoppingCart } from "../../../context/shoppingCart/ShoppingCartContext";
 import {
   AppBar,
   Box,
   Container,
   IconButton,
-  MenuIcon,
-  ShoppingCartOutlinedIcon,
   Toolbar,
   Typography,
-} from "../../../mui";
+} from "@mui/material";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import MenuIcon from "@mui/icons-material/Menu";
+
+import NavButton from "../../common/navButton.tx/NavButton";
+import { pages } from "../helpers";
+import { useShoppingCart } from "../../../context/shoppingCart/ShoppingCartContext";
 
 interface INavBarProps {
   title: string;
@@ -27,7 +28,7 @@ const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
         elevation={2}
         sx={{
           alignItems: "center",
-          background: "white",
+          height: 56,
         }}
       >
         <Container sx={{ display: "flex" }}>
@@ -43,7 +44,7 @@ const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
               onClick={(prev) => toggleMobileDrawer(!prev)}
               sx={{ mr: 1, display: { sm: "none" } }}
             >
-              <MenuIcon />
+              <MenuIcon sx={{ color: "white" }} />
             </IconButton>
 
             <Box
@@ -51,14 +52,24 @@ const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
                 display: { xs: "none", sm: "block" },
               }}
             >
-              <NavButton title={"Men"} link={"/shop/men"} />
-              <NavButton title={"Women"} link={"/shop/women"} />
+              <NavButton
+                variant='contained'
+                disableElevation
+                title={"Men"}
+                link={"/shop/men"}
+              />
+              <NavButton
+                variant='contained'
+                disableElevation
+                title={"Women"}
+                link={"/shop/women"}
+              />
             </Box>
 
             <Typography
               variant='h6'
               component='div'
-              sx={{ color: "gray", display: { xs: "none", sm: "block" } }}
+              sx={{ display: { xs: "none", sm: "block" } }}
             >
               {title}
             </Typography>
@@ -70,6 +81,8 @@ const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
             >
               {pages.map((page) => (
                 <NavButton
+                  variant='contained'
+                  disableElevation
                   key={page.title}
                   title={page.title}
                   link={page.link}
@@ -78,29 +91,28 @@ const NavBar = ({ title, toggleMobileDrawer }: INavBarProps) => {
             </Box>
           </Toolbar>
           <IconButton
-            onClick={() => setIsCartOpen(true)}
             aria-label='go to shopping cart'
             component='label'
             sx={{ position: "relative", mr: 2 }}
+            onClick={() => setIsCartOpen(true)}
           >
-            <ShoppingCartOutlinedIcon sx={{ transform: "scale(1.2)" }} />
+            <ShoppingBagIcon
+              color='inherit'
+              sx={{
+                transform: "scale(1.2)",
+                color: cartState.totalItems >= 1 ? "white" : undefined,
+              }}
+            />
             <Typography
               sx={{
-                background: "red",
                 position: "absolute",
-                color: "#fff",
-                top: "1.5rem",
-                left: "1.25rem",
-                borderRadius: "50%",
-                width: "1rem",
-                height: "1rem",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                top: "1.75rem",
+                left: cartState.totalItems < 10 ? "1.05rem" : "0.83rem",
+                fontWeight: 700,
               }}
               variant='caption'
             >
-              {cartState.totalItems}
+              {cartState.totalItems >= 1 && cartState.totalItems}
             </Typography>
           </IconButton>
         </Container>

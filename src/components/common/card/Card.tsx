@@ -1,6 +1,12 @@
-import { ReactNode } from "react";
-import { MuiCard, CardContent, CardMedia } from "../../../mui";
-import { styled } from "@mui/material";
+import { ReactNode, useState } from "react";
+
+import {
+  Card as MuiCard,
+  CardContent,
+  CardMedia,
+  styled,
+  CardProps,
+} from "@mui/material";
 
 import { IShopItem } from "../../../../types/shopItem";
 
@@ -8,19 +14,21 @@ interface ICardProps {
   item: IShopItem;
   children: ReactNode;
   orientation: "column" | "row";
+  elevation: CardProps["elevation"];
   quickAddButton?: ReactNode;
 }
 
 const StyledCardContent = styled(CardContent)({
-  paddingTop: "16px",
-  height: "80px",
   display: "flex",
   flexDirection: "column",
+  gap: "16px",
   justifyContent: "space-between",
-  alignItems: "baseline",
+  alignItems: "stretch",
   ".MuiCardActionArea-focusHighlight": {
     background: "transparent",
   },
+  padding: "8px 8px 0px 8px",
+  minHeight: "75px",
 });
 
 const StyledCardMedia = styled(CardMedia)({
@@ -32,23 +40,31 @@ const StyledCardMedia = styled(CardMedia)({
   backgroundPosition: "50% 50%",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  border: "yellow solid",
   minWidth: "25%",
+  margin: "16px",
 });
 
-const Card = ({ item, quickAddButton, children, orientation }: ICardProps) => {
+const Card = ({
+  item,
+  quickAddButton,
+  children,
+  orientation,
+  elevation,
+}: ICardProps) => {
+  const [isDisplayAddButton, setIsDisplayAddButton] = useState<boolean>(false);
   return (
     <>
       <MuiCard
-        variant='outlined'
+        onMouseOver={() => setIsDisplayAddButton(true)}
+        onMouseOut={() => setIsDisplayAddButton(false)}
+        elevation={elevation}
         sx={{
-          border: "red solid",
           display: "flex",
           flexDirection: orientation,
         }}
       >
         <StyledCardMedia image={item.image} title={item.title}>
-          {quickAddButton && quickAddButton}
+          {isDisplayAddButton && quickAddButton && quickAddButton}
         </StyledCardMedia>
 
         <StyledCardContent>{children}</StyledCardContent>

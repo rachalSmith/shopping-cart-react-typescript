@@ -1,5 +1,6 @@
-import { AddIcon, Container, Fab, Grid, Typography } from "../../mui";
 import { useParams } from "react-router";
+import { Fab, Grid, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useShoppingCart } from "../../context/shoppingCart/ShoppingCartContext";
@@ -31,7 +32,18 @@ interface ICardContentProps {
 const CardContent = ({ title, price }: ICardContentProps) => {
   return (
     <>
-      <Typography variant='caption'>{title}</Typography>
+      <Typography
+        variant='caption'
+        sx={{
+          display: "-webkit-box",
+          maxWidth: 200,
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: 2,
+          overflow: "hidden",
+        }}
+      >
+        {title}
+      </Typography>
       <Typography variant='subtitle2'>{formatCurrency(price)}</Typography>
     </>
   );
@@ -47,21 +59,20 @@ const Shop = () => {
   const shopItems = data as IShopItem[];
 
   return (
-    <Container>
-      <Grid container spacing={4}>
-        {shopItems.map((item) => (
-          <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
-            <Card
-              item={item}
-              orientation='column'
-              quickAddButton={<QuickAddButton item={item} />}
-            >
-              <CardContent title={item.title} price={item.price} />
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <Grid container spacing={2}>
+      {shopItems.map((item) => (
+        <Grid key={item.id} item xs={6} sm={4} md={3} lg={3}>
+          <Card
+            item={item}
+            orientation='column'
+            elevation={2}
+            quickAddButton={<QuickAddButton item={item} />}
+          >
+            <CardContent title={item.title} price={item.price} />
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

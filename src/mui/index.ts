@@ -21,5 +21,3 @@ export { default as Typography } from "@mui/material/Typography";
 export { default as CloseIcon } from "@mui/icons-material/Close";
 export { default as AddIcon } from "@mui/icons-material/Add";
 export { default as RemoveIcon } from "@mui/icons-material/Remove";
-export { default as ShoppingCartOutlinedIcon } from "@mui/icons-material/ShoppingBagOutlined";
-export { default as MenuIcon } from "@mui/icons-material/Menu";

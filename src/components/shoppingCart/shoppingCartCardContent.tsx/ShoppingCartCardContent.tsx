@@ -22,12 +22,21 @@ const ShoppingCardCardContent = ({ item }: ICardContentProps) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={10}>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Typography variant='caption'>{item.title}</Typography>
-      </Grid>
-      <Grid item xs={2}>
+
         <IconButton
-          size='small'
+          sx={{
+            p: 0,
+          }}
           aria-label='close'
           onClick={() =>
             cartDispatch({ type: "REMOVE_FROM_CART", payload: item })

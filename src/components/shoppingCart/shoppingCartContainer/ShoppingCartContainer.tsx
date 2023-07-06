@@ -1,16 +1,12 @@
 import Stack from "@mui/material/Stack";
 import Drawer from "../../common/drawer/Drawer";
 import Card from "../../common/card/Card";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import Fab from "@mui/material/Fab";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 
 import { useShoppingCart } from "../../../context/shoppingCart/ShoppingCartContext";
 import ShoppingCardCardContent from "../shoppingCartCardContent.tsx/ShoppingCartCardContent";
 
 import { formatCurrency } from "../../../utils/formatCurrency";
+import { Divider, Fab, Grid, Paper, Typography } from "@mui/material";
 
 const ShoppingCartContainer = () => {
   const { isCartOpen, setIsCartOpen, cartState } = useShoppingCart();
@@ -30,11 +26,14 @@ const ShoppingCartContainer = () => {
           },
         }}
       >
-        <Stack spacing={2} sx={{ mb: 19 }}>
+        <Stack spacing={2} sx={{ mb: 16 }}>
           {cartItems.map((item) => (
-            <Card key={item.id} item={item} orientation='row'>
-              <ShoppingCardCardContent item={item} />
-            </Card>
+            <>
+              <Card key={item.id} item={item} orientation='row' elevation={0}>
+                <ShoppingCardCardContent item={item} />
+                <Divider />
+              </Card>
+            </>
           ))}
         </Stack>
         <Paper
@@ -48,7 +47,6 @@ const ShoppingCartContainer = () => {
           }}
         >
           <Divider variant='middle' />
-
           <Grid
             container
             spacing={2}

@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 import {
-  CloseIcon,
-  MuiDrawer,
+  Drawer as MuiDrawer,
   Box,
-  Divider,
-  IconButton,
+  styled,
   Typography,
-} from "../../../mui";
-import { styled } from "@mui/material";
+  IconButton,
+  Divider,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface ISideDrawerprops {
   anchor: "top" | "left" | "bottom" | "right";
@@ -55,7 +55,7 @@ const Drawer = ({
           <CloseIcon />
         </IconButton>
       </Box>
-      <Divider />
+      <Divider sx={{ mt: 0.75, mb: 1 }} />
       {children}
     </MuiDrawer>
   );

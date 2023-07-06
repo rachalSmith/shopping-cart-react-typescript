@@ -20,7 +20,7 @@ describe("Card component", () => {
   it("should render the card image and children in a row when orientation is 'row'", () => {
     const tree = renderer
       .create(
-        <Card item={item} orientation='row'>
+        <Card item={item} orientation='row' elevation={2}>
           {children}
         </Card>
       )
@@ -30,7 +30,7 @@ describe("Card component", () => {
   it("should render the card image and content in a column when orientation is 'column'", () => {
     const tree = renderer
       .create(
-        <Card item={item} orientation='column'>
+        <Card item={item} orientation='column' elevation={2}>
           {children}
         </Card>
       )
@@ -40,7 +40,12 @@ describe("Card component", () => {
   it("should render a button if one is passed in as a prop", () => {
     const tree = renderer
       .create(
-        <Card item={item} quickAddButton={button} orientation='column'>
+        <Card
+          item={item}
+          quickAddButton={button}
+          orientation='column'
+          elevation={2}
+        >
           {children}
         </Card>
       )
