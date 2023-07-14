@@ -20,7 +20,7 @@ Not the most creative project, but provides good context for using common react 
 - [ ] Intergration tests RTL.
 - [ ] Local storage hook.
 - [ ] Hook tests.
-- [ ] Mui theme and fix styling.
+- [x] Mui theme and fix styling.
 - [ ] Refactor.
 - [ ] End to End tests.
 
